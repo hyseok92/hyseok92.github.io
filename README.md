@@ -1,1 +1,961 @@
-# hyseok92.github.io
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>동일교회 청년부 예배 미디어팀 5개년 운영 계획서</title>
+  <!-- Pretendard 폰트 -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+  />
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <style>
+    :root {
+      --primary: #007BFF;
+      --primary-light: rgba(0, 123, 255, 0.1);
+      --neutral-1: #F5F5F7;
+      --neutral-2: #DDDDDD;
+      --neutral-3: #666666;
+      --neutral-4: #1A1A1A;
+      --dark-insight: #444444;
+      --white: #FFFFFF;
+      --shadow: rgba(0, 0, 0, 0.08);
+      --radius: 20px;
+      --transition: 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto,
+        sans-serif;
+      line-height: 1.6;
+      color: var(--neutral-3);
+      background: linear-gradient(
+        to bottom right,
+        #fafafa 0%,
+        #f5f5f7 50%,
+        #eceef1 100%
+      );
+      margin: 0;
+      padding-top: 60px; /* Sticky Navbar height */
+      overflow-x: hidden;
+    }
+
+    /* Sticky Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: var(--white);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 2rem;
+    }
+
+    .navbar h1 {
+      font-size: 20px;
+      color: var(--primary);
+      font-weight: 600;
+      margin-right: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--neutral-4);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Wave Shape Divider (상단) */
+    .wave-divider {
+      position: relative;
+      height: 100px;
+      margin-bottom: -100px; /* wave 높이만큼 겹치게 */
+      z-index: -1;
+    }
+    .wave-divider svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* 헤더(히어로 섹션) */
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding-bottom: 1rem;
+      position: relative;
+    }
+
+    header svg {
+      margin-top: 1rem;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: bold;
+      color: var(--neutral-4);
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--primary);
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--primary);
+      margin: 2.5rem 0 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    h2::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--neutral-4);
+      margin: 1.5rem 0 1rem;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin: 1.5rem 0;
+    }
+
+    .card {
+      background-color: var(--white);
+      border-radius: var(--radius);
+      padding: 25px;
+      box-shadow: 0 4px 20px var(--shadow);
+      flex: 1;
+      min-width: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card h3 {
+      position: relative;
+      z-index: 2;
+      margin-top: 0.5rem;
+    }
+
+    .card p {
+      position: relative;
+      z-index: 2;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 5px;
+      height: 100%;
+      background-color: var(--primary);
+    }
+
+    .card-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      color: var(--primary);
+      opacity: 0.2;
+      z-index: 1;
+    }
+
+    .quote {
+      background-color: var(--primary-light);
+      border-left: 4px solid var(--primary);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 1.5rem 0;
+    }
+    .quote p {
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    .badge {
+      display: inline-block;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .insight-bar {
+      background-color: var(--dark-insight);
+      color: var(--white);
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin: 1.5rem 0;
+      line-height: 1.4;
+    }
+
+    .progress-container {
+      background-color: var(--neutral-2);
+      border-radius: 10px;
+      height: 8px;
+      width: 100%;
+      margin: 15px 0;
+      overflow: hidden;
+    }
+    .progress-bar {
+      background-color: var(--primary);
+      border-radius: 10px;
+      height: 8px;
+      width: 0%;
+    }
+
+    .chart-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 200px;
+      margin: 20px 0;
+      position: relative;
+    }
+
+    .flow-diagram {
+      position: relative;
+      margin: 3rem 0;
+    }
+    .flow-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .flow-dot {
+      width: 16px;
+      height: 16px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      margin-bottom: 10px;
+      transition: transform 0.3s;
+    }
+    .flow-node:hover .flow-dot {
+      transform: scale(1.2);
+    }
+
+    .flow-label {
+      font-weight: 600;
+      color: var(--neutral-4);
+    }
+    .flow-description {
+      font-size: 14px;
+      max-width: 180px;
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+    .flow-line {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      right: 8px;
+      height: 2px;
+      background-color: var(--neutral-2);
+      z-index: 1;
+    }
+
+    .team-structure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 2rem 0;
+    }
+
+    .team-leader {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 15px 30px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+      min-width: 200px;
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+    .team-leader::after {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 15px;
+      background-color: var(--neutral-2);
+    }
+
+    .team-members {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .team-member {
+      background-color: var(--white);
+      padding: 15px 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 10px var(--shadow);
+      flex: 1;
+      min-width: 200px;
+      max-width: 250px;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .team-member:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+    .team-member-title {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 5px;
+    }
+    .team-member-description {
+      font-size: 14px;
+      color: var(--neutral-3);
+      line-height: 1.4;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      background-color: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+    }
+    th {
+      background-color: var(--primary-light);
+      color: var(--primary);
+      font-weight: 600;
+      text-align: left;
+      padding: 15px 20px;
+      white-space: nowrap;
+    }
+    td {
+      padding: 15px 20px;
+      border-top: 1px solid var(--neutral-1);
+    }
+
+    ul {
+      margin-left: 20px;
+      margin-bottom: 1rem;
+      line-height: 1.4;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--neutral-2);
+      color: var(--neutral-3);
+      font-size: 14px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      body {
+        padding-top: 80px; /* in case we want extra space on small screens */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Wave Shape Divider (상단) -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path fill="#FFFFFF" fill-opacity="1" d="M0,0L80,10C160,20,320,40,480,42.7C640,45,800,27,960,21.3C1120,16,1280,32,1360,40L1440,48L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
+    </svg>
+  </div>
+
+  <div class="container">
+    <header id="section-intro">
+      <h1>동일교회 청년부 예배 미디어팀 5개년 운영 계획서</h1>
+      <div class="subtitle">하나님께 드리는 온전한 예배를 위한 거룩한 헌신</div>
+      <svg width="100%" height="8" viewBox="0 0 1200 8" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="4" x2="1200" y2="4" stroke="#DDDDDD" stroke-width="2" />
+        <circle cx="600" cy="4" r="4" fill="#007BFF" />
+      </svg>
+    </header>
+
+    <!-- 서론 -->
+    <section id="section-intro" style="margin-top: 40px;  center/cover no-repeat fixed; padding:3rem; border-radius:var(--radius);">
+      <h2>서론: 예배, 그리고 미디어</h2>
+      <p>
+        예배는 하나님을 향한 경배와 찬양, 그리고 그분과의 만남이라는 본질적 목적을 지닙니다.<p></p>
+        미디어는 예배의 본질을 훼손하는 것이 아니라, 예배의 감동을 증폭시키고 복음의 메시지를
+        효과적으로 전달하는 도구로서 중요성이 커지고 있습니다.
+      </p>
+
+      <div class="insight-bar">
+        미디어는 예배를 돕는 귀한 도구가 될 수 있으며, 성전 건축이 예배의 경건함을 높이는 것처럼
+        예배의 질을 향상시킬 수 있습니다.
+      </div>
+
+      <h3>동일교회 청년부의 현실적 어려움</h3>
+      <div class="card-container">
+        <div class="card gsap-card">
+          <div class="card-icon">🔍</div>
+          <h3>전문성 부족</h3>
+          <p>
+            현재 1-4부 예배, 오후 찬양 예배, 금요 예배를 방송 전문 간사 한 명이 담당하고 있으며,
+            청년부 예배(4부)는 청년 봉사자들이 주도적으로 담당하나 전문 간사의 사역 스케줄로 인해
+            실질적인 전문성 향상이 어려운 상황입니다.
+          </p>
+        </div>
+        <div class="card gsap-card">
+          <div class="card-icon">😓</div>
+          <h3>봉사자들의 고충</h3>
+          <p>
+            방송실 봉사는 전문 지식과 고도의 집중력을 요구하는 사역으로, 봉사자들은 예배에 온전히
+            집중하기 어려운 환경에서 장시간 봉사와 기술적 문제 해결에 대한 부담감으로 쉽게 지쳐 짧은
+            기간 내에 사역을 그만두는 경우가 많습니다.
+          </p>
+        </div>
+        <div class="card gsap-card">
+          <div class="card-icon">💰</div>
+          <h3>제한된 자원</h3>
+          <p>
+            향후 5년간 방송 미디어 분야에 대한 재정적, 장비 구입의 여력이 없을 것으로 예상되는
+            상황에서 청년 봉사자들의 헌신이 더욱 중요합니다. 현재 보유 중인 장비와 인력을 최대한
+            활용하면서, 효율적인 운영 방안을 모색해야 합니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 미디어팀 비전 및 운영 철학 -->
+    <section id="section-vision" style="margin-top:40px;">
+      <h2>미디어팀 비전 및 운영 철학</h2>
+      <div class="quote gsap-card">
+        <p>
+          "동일교회 청년부 예배 미디어팀은 하나님을 향한 온전한 예배를 위해 헌신하며,<br>
+          전문성과 섬김의 리더십을 갖춘 미디어 사역자를 양성하여, 청년 예배의 부흥과 하나님 나라
+          확장에 기여한다."
+        </p>
+      </div>
+
+      <h3>핵심 가치</h3>
+      <div class="card-container">
+        <div class="card gsap-card">
+          <div class="badge">핵심 가치 1</div>
+          <h3>거룩한 예배</h3>
+          <p>
+            미디어팀의 모든 사역은 하나님을 영화롭게 하는 온전한 예배를 위한 것입니다.
+            이는 기술적 완벽함을 넘어, 영적인 충만함과 거룩함을 추구하는 것을 의미합니다.
+          </p>
+        </div>
+
+        <div class="card gsap-card">
+          <div class="badge">핵심 가치 2</div>
+          <h3>전문성</h3>
+          <p>
+            지속적인 교육과 훈련을 통해, 최고 수준의 전문성을 갖춘 미디어 사역자로 성장합니다.
+            이는 하나님께 최선의 것을 드리고자 하는 열정에서 비롯됩니다.
+          </p>
+        </div>
+
+        <div class="card gsap-card">
+          <div class="badge">핵심 가치 3</div>
+          <h3>헌신</h3>
+          <p>
+            자발적이고 헌신적인 섬김을 통해, 청년부 예배와 공동체의 부흥에 기여합니다.
+            헌신은 하나님을 향한 사랑의 표현이며, 교회를 세우는 기초입니다.
+          </p>
+        </div>
+
+        <div class="card gsap-card">
+          <div class="badge">핵심 가치 4</div>
+          <h3>공동체</h3>
+          <p>
+            상호 존중과 협력을 바탕으로, 하나 됨을 이루고, 건강한 공동체 문화를 조성합니다.
+            이는 하나님 나라의 모형을 이 땅에 실현하는 것입니다.
+          </p>
+        </div>
+      </div>
+
+      <h3>조직 구조</h3>
+      <div class="team-structure gsap-card">
+        <div class="team-leader">
+          <strong>팀장</strong>
+          <div>팀 비전 수립, 운영 계획, 팀원 관리, 대외 협력, 영적 돌봄</div>
+        </div>
+
+        <div class="team-members">
+          <div class="team-member">
+            <div class="team-member-title">음향 담당</div>
+            <div class="team-member-description">
+              예배 및 행사 음향 환경 조성, 음향 장비 관리
+            </div>
+          </div>
+
+          <div class="team-member">
+            <div class="team-member-title">영상 담당</div>
+            <div class="team-member-description">
+              예배 중계, 영상 제작, 자막 송출, 온라인 콘텐츠 관리
+            </div>
+          </div>
+
+          <div class="team-member">
+            <div class="team-member-title">조명 담당</div>
+            <div class="team-member-description">
+              예배 분위기 조성, 무대 연출 위한 조명 디자인 및 운영
+            </div>
+          </div>
+
+          <div class="team-member">
+            <div class="team-member-title">교육 담당</div>
+            <div class="team-member-description">
+              팀원 전문성 향상 위한 교육 프로그램 기획 및 운영
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5개년 성장 계획 -->
+    <section id="section-growth" style="margin-top:40px;">
+      <h2>5개년 성장 계획</h2>
+      <div class="flow-diagram gsap-card">
+        <div class="flow-line"></div>
+        <div style="display: flex; justify-content: space-between;">
+          <div class="flow-node">
+            <div class="flow-dot"></div>
+            <div class="flow-label">2025</div>
+            <div class="flow-description">
+              기초 확립<br> 부르심에 합당한 헌신과<br> 기초 역량 강화
+            </div>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-dot"></div>
+            <div class="flow-label">2026</div>
+            <div class="flow-description">
+              전문성 심화<br> 지속적인 훈련과 섬김의 <br>자세 확립
+            </div>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-dot"></div>
+            <div class="flow-label">2027</div>
+            <div class="flow-description">
+              내적 성장<br> 예배의 본질에 대한<br> 깊은 이해와 성숙
+            </div>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-dot"></div>
+            <div class="flow-label">2028</div>
+            <div class="flow-description">
+              리더십 양성<br> 섬김의 리더십을 갖춘<br> 다음 세대 사역자 육성
+            </div>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-dot"></div>
+            <div class="flow-label">2029</div>
+            <div class="flow-description">
+              사역 확장<br> 온전한 예배를 위한 <br>헌신의 지경을 넓히다
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="card gsap-card">
+          <div class="badge">1차년도</div>
+          <h3>2025년: 기초 확립</h3>
+          <p>
+            <strong>목표:</strong> 미디어팀의 안정적인 운영 기반을 구축하고, 봉사자들의 기본
+            역량을 강화
+          </p>
+          <ul>
+            <li>팀 구성 및 오리엔테이션</li>
+            <li>영성 훈련 및 기초 기술 교육</li>
+            <li>멘토링 시스템 구축</li>
+            <li>장비 및 시설 점검, 예산 확보</li>
+          </ul>
+        </div>
+
+        <div class="card gsap-card">
+          <div class="badge">3차년도</div>
+          <h3>2027년: 내적 성장</h3>
+          <p>
+            <strong>목표:</strong> 예배의 본질에 대한 깊은 이해를 바탕으로 기술을 넘어선 영적
+            성숙 이루기
+          </p>
+          <ul>
+            <li>예배학 심화 교육</li>
+            <li>영적 훈련 강화</li>
+            <li>개인별 영성 상담</li>
+            <li>봉사 경험 나누기</li>
+          </ul>
+        </div>
+
+        <div class="card gsap-card">
+          <div class="badge">5차년도</div>
+          <h3>2029년: 사역 확장</h3>
+          <p>
+            <strong>목표:</strong> 축적된 역량으로 사역의 지경을 넓혀 더 많은 영혼들에게
+            은혜로운 예배 제공
+          </p>
+          <ul>
+            <li>온라인 예배 지원</li>
+            <li>지역 교회 협력</li>
+            <li>선교지 미디어 사역 지원</li>
+            <li>장기 비전 재정립</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 봉사자 동기 부여 및 유지 전략 -->
+    <section id="section-strategy" style="margin-top:40px;">
+      <h2>봉사자 동기 부여 및 유지 전략</h2>
+      <div class="card-container">
+        <div class="card gsap-card">
+          <div class="badge">전략 1</div>
+          <h3>예배의 가치와 의미 고취</h3>
+          <p>
+            미디어 사역이 단순한 기술 봉사를 넘어 하나님께 드리는 예배의 중요한 일부라는
+            신학적, 예배학적 관점을 교육합니다. 정기적인 기도 모임과 영성 훈련을 통해
+            봉사자들이 하나님과 깊은 관계 속에서 사역할 수 있도록 돕습니다.
+          </p>
+        </div>
+
+        <div class="card gsap-card">
+          <div class="badge">전략 2</div>
+          <h3>봉사 환경 개선</h3>
+          <p>
+            장비 점검 및 관리, 전용 공간 확보, 봉사자 복지 제공 등을 통해 최상의 사역 환경을
+            조성합니다. 안정적인 장비 운영과 편안한 환경은 봉사자들의 사역 만족도를 높이고
+            지속적인 봉사를 가능하게 합니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="card gsap-card">
+          <div class="badge">전략 3</div>
+          <h3>합리적인 봉사 스케줄 및 업무 분담</h3>
+          <p>
+            개인 일정을 존중하고, 탄력적인 봉사 시간을 운영하며, 공평한 업무 분담과 로테이션
+            시스템을 통해 봉사자들의 부담을 줄이고 지속 가능한 헌신을 도모합니다.
+          </p>
+        </div>
+
+        <div class="card gsap-card">
+          <div class="badge">전략 4</div>
+          <h3>격려와 인정 문화 조성</h3>
+          <p>
+            정기적인 감사 표현, 공개적 칭찬, 우수 봉사자 시상 등을 통해 봉사자들의 헌신에
+            대한 감사와 인정의 문화를 조성합니다. 작은 관심과 격려가 봉사자들에게 큰 힘이
+            됩니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 교육 프로그램 -->
+    <section id="section-education" style="margin-top:40px;">
+      <h2>교육 프로그램</h2>
+      <div class="card-container">
+        <div class="card gsap-card">
+          <div class="badge">기본 과정</div>
+          <h3>예배 미디어 사역의 기초 확립</h3>
+          <p><strong>대상:</strong> 신입 팀원 전체</p>
+          <p><strong>기간:</strong> 1개월 (주 1회, 회당 2시간)</p>
+          <p><strong>주요 내용:</strong></p>
+          <ul>
+            <li>예배학 개론</li>
+            <li>미디어 사역의 이해</li>
+            <li>음향/영상/조명 기초</li>
+          </ul>
+        </div>
+
+        <div class="card gsap-card">
+          <div class="badge">심화 과정</div>
+          <h3>분야별 전문성 강화</h3>
+          <p><strong>대상:</strong> 기본 교육 이수자 또는 기존 팀원 중 희망자</p>
+          <p><strong>기간:</strong> 3개월 (주 1회, 회당 2시간)</p>
+          <p><strong>주요 내용:</strong></p>
+          <ul>
+            <li>음향: 음향 이론, 장비 활용, 라이브 믹싱 실습</li>
+            <li>영상: 촬영 심화, 편집, 배경화면 제작, PTZ 카메라</li>
+            <li>조명: 조명 디자인, 연출, DMX 신호</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="card gsap-card">
+          <div class="badge">영성 과정</div>
+          <h3>하나님과의 깊은 교제와 영적 성장</h3>
+          <p><strong>대상:</strong> 팀원 전체</p>
+          <p><strong>기간:</strong> 연중 지속 (월 1회, 회당 1시간)</p>
+          <p><strong>주요 내용:</strong></p>
+          <ul>
+            <li>정기 기도 모임</li>
+            <li>말씀 묵상</li>
+            <li>영성 훈련 프로그램</li>
+          </ul>
+        </div>
+
+        <div class="card gsap-card">
+          <div class="badge">리더십 과정</div>
+          <h3>섬김의 리더십 개발</h3>
+          <p><strong>대상:</strong> 팀장, 파트장, 2년차 이상 팀원 중 희망자</p>
+          <p><strong>기간:</strong> 6개월 (월 1회, 회당 2시간)</p>
+          <p><strong>주요 내용:</strong></p>
+          <ul>
+            <li>섬김의 리더십</li>
+            <li>의사소통, 갈등 관리</li>
+            <li>팀 운영, 멘토링</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1차년도 운영 예산(안) -->
+    <section id="section-budget" style="margin-top:40px;">
+      <h2>1차년도 운영 예산(안)</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>예산(만원)</th>
+            <th>세부 내역</th>
+            <th>비고</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>영성 훈련</td>
+            <td>100</td>
+            <td>
+              외부 강사 초청 (50만원)<br />
+              다과 및 장소 대여 (50만원)
+            </td>
+            <td>예배 신학 및 미디어 사역 의미에 대한 교육</td>
+          </tr>
+          <tr>
+            <td>기초 기술 교육</td>
+            <td>150</td>
+            <td>
+              음향 교육 (자체)<br />
+              영상/조명 교육 (외부 강사 150만원)
+            </td>
+            <td>음향은 팀원 중 전문가 자체 강의, 영상/조명은 전문 강사 초빙</td>
+          </tr>
+          <tr>
+            <td>팀 운영비</td>
+            <td>100</td>
+            <td>
+              팀 회식 (40만원)<br />
+              생일/경조사 지원 (30만원)<br />
+              운영 물품 구입 (30만원)
+            </td>
+            <td>팀원 간 친목 도모 및 공동체 의식 강화</td>
+          </tr>
+          <tr>
+            <td>봉사자 복지</td>
+            <td>100</td>
+            <td>
+              간식 및 식사 (50만원)<br />
+              교통비 지원 (50만원)
+            </td>
+            <td>예배 전후 봉사자 간식/식사 제공, 교통비 일부 지원</td>
+          </tr>
+          <tr>
+            <td>예비비</td>
+            <td>50</td>
+            <td>긴급 장비 수리 및 예상치 못한 비용</td>
+            <td>예기치 못한 상황에 유연하게 대처</td>
+          </tr>
+          <tr>
+            <td><strong>총계</strong></td>
+            <td><strong>500</strong></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="chart-container gsap-card">
+        <svg width="400" height="200" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(100, 100)">
+            <path d="M0,0 L0,-80 A80,80 0 0,1 36.8,-70.4 Z" fill="#007BFF" />
+            <path d="M0,0 L36.8,-70.4 A80,80 0 0,1 76.8,-22.4 Z" fill="#0069D9" />
+            <path d="M0,0 L76.8,-22.4 A80,80 0 0,1 48,64 Z" fill="#007BFF" />
+            <path d="M0,0 L48,64 A80,80 0 0,1 -48,64 Z" fill="#0069D9" />
+            <path d="M0,0 L-48,64 A80,80 0 0,1 -80,0 Z" fill="#007BFF" />
+            <path d="M0,0 L-80,0 A80,80 0 0,1 0,-80 Z" fill="#DDDDDD" />
+            <circle cx="0" cy="0" r="40" fill="white" />
+          </g>
+          <g transform="translate(220, 30)">
+            <rect x="0" y="0" width="15" height="15" fill="#007BFF"></rect>
+            <text x="25" y="12" font-size="12" fill="#666666">영성 훈련 (20%)</text>
+
+            <rect x="0" y="25" width="15" height="15" fill="#0069D9"></rect>
+            <text x="25" y="37" font-size="12" fill="#666666">기초 기술 교육 (30%)</text>
+
+            <rect x="0" y="50" width="15" height="15" fill="#007BFF"></rect>
+            <text x="25" y="62" font-size="12" fill="#666666">팀 운영비 (20%)</text>
+
+            <rect x="0" y="75" width="15" height="15" fill="#0069D9"></rect>
+            <text x="25" y="87" font-size="12" fill="#666666">봉사자 복지 (20%)</text>
+
+            <rect x="0" y="100" width="15" height="15" fill="#007BFF"></rect>
+            <text x="25" y="112" font-size="12" fill="#666666">예비비 (10%)</text>
+          </g>
+        </svg>
+      </div>
+
+      <h3>재원 조달 방안</h3>
+      <ul>
+        <li>청년부 예산: 청년부 예산 편성을 통해 미디어팀 운영에 필요한 재원 확보</li>
+        <li>특별 헌금: 미디어팀 사역의 중요성을 알리고 청년부 및 장년 성도들을 대상으로 자발적인 특별 헌금 요청</li>
+        <li>지출 최소화: 기존 자원을 최대한 활용하고, 불필요한 지출을 최소화하여 예산 효율적 사용</li>
+      </ul>
+    </section>
+
+    <!-- 결론 및 제언 -->
+    <section id="section-conclusion" style="margin-top:40px;">
+      <h2>결론 및 제언</h2>
+      <div class="insight-bar gsap-card">
+        전문성을 갖춘 미디어팀 운영은 예배의 질적 향상, 청년부 부흥, 봉사자 영적 성장,
+        교회 성장에 기여하며 한국교회 미디어 사역의 모범 사례가 될 것입니다.
+      </div>
+
+      <h3>기대 효과</h3>
+      <ul>
+        <li><strong>예배의 질적 향상:</strong> 전문성을 갖춘 미디어팀 운영을 통해 예배의 몰입도를 높이고 은혜로운 예배 환경 조성</li>
+        <li><strong>청년부 부흥:</strong> 미디어 사역의 전문성과 봉사자들의 헌신으로 청년 예배 참석률과 신입 청년 정착률 증가</li>
+        <li><strong>봉사자 영적 성장:</strong> 체계적인 교육과 훈련, 영성 훈련을 통해 전문성과 영성을 겸비한 미디어 사역자 양성</li>
+        <li><strong>교회 성장:</strong> 미디어 사역 강화를 통한 교회의 대외 이미지 제고와 복음 전파 효과성 증대</li>
+      </ul>
+
+      <h3>청년 담당 목회자 및 청년부 성도들에게 드리는 제언</h3>
+      <ul>
+        <li><strong>적극적인 지원과 협력:</strong> 미디어팀 설립과 운영을 위한 목회자의 지원과 리더십, 청년부 성도들의 관심과 참여</li>
+        <li><strong>기도와 격려:</strong> 미디어팀 봉사자들의 헌신을 기억하고 기도로 후원하며 따뜻한 격려의 말 전하기</li>
+        <li><strong>소통과 이해:</strong> 미디어팀과 긴밀한 소통을 통해 최상의 예배를 위한 협력 체계 구축</li>
+      </ul>
+
+      <div class="quote gsap-card">
+        <p>"우리가 알거니와 하나님을 사랑하는 자 곧 그의 뜻대로 부르심을 입은 자들에게는 모든 것이 합력하여 선을 이루느니라" (로마서 8:28)</p>
+      </div>
+    </section>
+
+    <footer style="margin-top: 40px;">
+      <p>
+        © 2025 동일교회 청년부 예배 미디어팀 | 하나님께 영광, 청년부에는 부흥, 교회에는 성장
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 카드나 quote 등에 gsap-card 클래스를 지정하여
+      // 스크롤 트리거 애니메이션 적용.
+      gsap.utils.toArray('.gsap-card').forEach((elem, i) => {
+        gsap.from(elem, {
+          scrollTrigger: {
+            trigger: elem,
+            start: 'top 95%',
+            toggleActions: 'play none none none',
+          },
+          opacity: 0,
+          y: 40,
+          duration: 0.5,
+          delay: i * 0.001,
+          ease: 'power2.out'
+        });
+      });
+
+      // insight-bar 같은 것들도
+      // 임의로 클래스를 줄 수 있음
+      // 여기선 .insight-bar.gsap-card로 처리되어 있음.
+
+      // progress-bar 채우기
+      gsap.from('.progress-bar', {
+        scrollTrigger: {
+          trigger: '.progress-container',
+          start: 'top 70%',
+        },
+        width: 0,
+        duration: 0.2,
+        ease: 'power1.out'
+      });
+    });
+  </script>
+</body>
+</html>
