@@ -425,6 +425,19 @@
   </style>
 </head>
 <body>
+  <!-- Sticky NavBar -->
+  <nav class="navbar">
+    <h1></h1>
+    <div class="nav-links">
+      <a href="#section-intro">서론</a>
+      <a href="#section-vision">비전/운영철학</a>
+      <a href="#section-growth">5개년 계획</a>
+      <a href="#section-strategy">동기 부여</a>
+      <a href="#section-education">교육 프로그램</a>
+      <a href="#section-budget">예산(안)</a>
+      <a href="#section-conclusion">결론</a>
+    </div>
+  </nav>
 
   <!-- Wave Shape Divider (상단) -->
   <div class="wave-divider">
